@@ -1,7 +1,22 @@
 {% extends 'navbar.html' %}
 {% block title_block %} {{user.user_profile.full_name}} (@{{user.username}}) {% endblock %}
 {% block css_block %}
+<style>
+  .crop {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .crop img {
+    width: 400px;
+    height: 300px;
+    margin: -75px 0 0 -100px;
+
+  }
+</style>
 {% endblock %}
+
 {% block body_block %}
 <div class="row">
   <div class="col-sm-4">
@@ -47,8 +62,17 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
-
     </div>
   </div>
 </div>
+<br>
+<br>
+<div class="row">
+  {% for post in user.post.all %}
+  <div class="crop">
+    <img src="/media/{{post.image}}" title="{{post.caption}}">
+  </div>
+  {% endfor %}
+</div>
+
 {% endblock %}
