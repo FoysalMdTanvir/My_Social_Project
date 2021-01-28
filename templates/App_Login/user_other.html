@@ -26,7 +26,13 @@
     {% endif %}
   </div>
   <div class="col=sm-8">
-    <h3>@{{user_other.username}} &nbsp;</h3>
+    <h3>@{{user_other.username}} &nbsp;
+      {% if not already_followed %}
+      <a href="{% url 'App_Login:follow' username=user_other.username %}" class="btn btn-primary">Follow</a>
+      {% else %}
+      <a href="{% url 'App_Login:unfollow' username=user_other.username %}" class="btn btn-primary">Unfollow</a>
+      {% endif %}
+    </h3>
     <br>
     <h4>{{user_other.post.count}} posts &nbsp; &nbsp; {{user_other.following.count}} followers &nbsp; &nbsp; {{user_other.follower.count}} following &nbsp; &nbsp;</h4>
     <br>
